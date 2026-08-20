@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rezervační systém pro restaurace | eBook by OrderMage</title>
+<meta name="description" content="Živá mapa stolů, online rezervace i rezervační kniha pro české restaurace. Funguje i bez internetu, bez instalace v prohlížeči. Vyzkoušejte 30 dní zdarma.">
+<link rel="canonical" href="https://ebook.opusdock.com/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="alternate" hreflang="cs" href="https://ebook.opusdock.com/">
+<link rel="alternate" hreflang="x-default" href="https://ebook.opusdock.com/">
+<style>
+/* Landing page styles — self-contained, system font stack, light + dark. */
+:root{
+  --bg:#ffffff; --bg-alt:#f8fafc; --bg-teal:#f0fdfa;
+  --text:#0f172a; --muted:#475569; --soft:#64748b;
+  --accent:#0f766e; --accent-strong:#115e59; --accent-text:#0f766e;
+  --border:#e2e8f0; --card:#ffffff; --error:#b91c1c;
+  --shadow:0 10px 34px rgba(15,118,110,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1120; --bg-alt:#0f172a; --bg-teal:#0e2321;
+    --text:#e2e8f0; --muted:#a5b4c8; --soft:#8b9bb1;
+    --accent:#0f766e; --accent-strong:#0d9488; --accent-text:#5eead4;
+    --border:#233045; --card:#111a2e; --error:#fca5a5;
+    --shadow:0 10px 34px rgba(0,0,0,.45);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+section{padding:3.5rem 0;scroll-margin-top:4.5rem}
+h1{font-size:clamp(2rem,5.2vw,3.1rem);line-height:1.12;letter-spacing:-.02em;font-weight:800}
+h2{font-size:1rem;font-weight:800;color:var(--accent-text);letter-spacing:.01em;margin-bottom:.4rem}
+.display{font-size:clamp(1.45rem,3vw,1.9rem);line-height:1.25;font-weight:800;letter-spacing:-.01em;margin-bottom:.9rem}
+p{margin-bottom:.9rem}
+a{color:var(--accent-text)}
+img{max-width:100%;height:auto}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:1.05rem;padding:.9rem 1.6rem;border-radius:.9rem;text-decoration:none;border:0;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--accent-strong)}
+.micro{font-size:.85rem;color:var(--soft);margin-top:.6rem}
+.kicker{display:inline-block;font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text);margin-bottom:.9rem}
+.shot{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:1rem;box-shadow:var(--shadow)}
+/* sticky header — fixed only with JS; static fallback without it */
+.topbar{background:var(--bg);border-bottom:1px solid var(--border);z-index:50}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.55rem;padding-bottom:.55rem}
+.topbar .brand{display:flex;align-items:baseline;gap:.5rem;white-space:nowrap}
+.topbar .logo{font-weight:900;font-size:1.05rem;letter-spacing:-.01em;color:var(--text);text-decoration:none;white-space:nowrap}
+.topbar .logo b{color:var(--accent-text)}
+.topbar .by{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);text-decoration:none}
+.topbar .by:hover{color:var(--accent-text)}
+.topbar nav{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap}
+.topbar nav a{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--muted)}
+.topbar nav a:hover{color:var(--accent-text)}
+.topbar nav a.cta{background:var(--accent);color:#fff;padding:.45rem .95rem;border-radius:.65rem}
+.topbar nav a.cta:hover{background:var(--accent-strong)}
+html.js .topbar{position:fixed;top:0;left:0;right:0;transform:translateY(-100%);visibility:hidden;transition:transform .22s ease,visibility .22s}
+html.js .topbar.shown{transform:none;visibility:visible}
+@media (max-width:760px){.topbar nav a:not(.cta){display:none}}
+/* hero */
+#hero{padding-top:4rem}
+#hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+#hero .sub{font-size:1.15rem;color:var(--muted);margin:1.1rem 0 1.2rem}
+.definition{border-left:3px solid var(--accent);background:var(--bg-alt);padding:.9rem 1.1rem;border-radius:0 .8rem .8rem 0;font-size:.95rem;color:var(--muted);margin-bottom:1.5rem}
+.cta-row{margin-bottom:.4rem}
+.secondary{display:inline-block;margin-top:1rem;font-weight:700}
+@media (max-width:900px){#hero .grid{grid-template-columns:1fr;gap:2rem}}
+/* proof strip */
+#ukazky{background:var(--bg-alt)}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.strip figure{margin:0}
+.strip figcaption{font-size:.9rem;color:var(--muted);margin-top:.6rem}
+.crop{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:1rem;box-shadow:var(--shadow);aspect-ratio:4/3;background:var(--card)}
+.crop img{position:absolute;left:0;top:0;max-width:none}
+.crop-plac img{width:190%;transform:translate(-6%,-31%)}
+.crop-email img{width:132%;transform:translate(-10%,-27%)}
+@media (max-width:760px){.strip{grid-template-columns:1fr}}
+/* benefit blocks */
+.benefit .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:2.8rem;align-items:center}
+.benefit.flip .grid{grid-template-columns:.95fr 1.05fr}
+.benefit.flip .media{order:-1}
+@media (max-width:900px){.benefit .grid,.benefit.flip .grid{grid-template-columns:1fr;gap:1.6rem}.benefit.flip .media{order:0}}
+.benefit p{color:var(--muted)}
+#zivy-plac,#tym{background:var(--bg-alt)}
+/* steps */
+.steps{list-style:none;counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:1.4rem 0 1rem}
+.steps li{counter-increment:step;background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1.2rem;font-weight:600}
+.steps li::before{content:counter(step);display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;margin-bottom:.7rem}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+/* trust block */
+#offline{background:var(--bg-teal)}
+.lead-claim{font-size:1.25rem;font-weight:800;margin-bottom:1rem}
+#offline h3{font-size:1.02rem;font-weight:800;margin:1.4rem 0 .3rem}
+#offline .pair{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+@media (max-width:760px){#offline .pair{grid-template-columns:1fr}}
+/* faq */
+#faq details{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1rem 1.2rem;margin-bottom:.8rem}
+#faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+#faq summary::-webkit-details-marker{display:none}
+#faq summary::after{content:"+";font-size:1.4rem;font-weight:800;color:var(--accent-text);line-height:1}
+#faq details[open] summary::after{content:"−"}
+#faq h3{display:inline;font-size:1.02rem;font-weight:800;color:var(--text)}
+#faq details p{margin:.8rem 0 0;color:var(--muted)}
+/* lead form */
+#demo{background:var(--bg-alt)}
+#demo .panel{max-width:38rem;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:1.25rem;padding:2rem;box-shadow:var(--shadow)}
+#demo h2{font-size:clamp(1.4rem,3vw,1.8rem);color:var(--text);margin-bottom:.4rem}
+#demo .intro{color:var(--muted);margin-bottom:1.4rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+.field input{width:100%;font:inherit;padding:.7rem .9rem;border:1px solid var(--border);border-radius:.7rem;background:var(--bg);color:var(--text)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.field .helper{font-size:.82rem;color:var(--soft);margin:.25rem 0 0}
+.field .error,#lead-form-error{font-size:.85rem;font-weight:600;color:var(--error);margin:.3rem 0 0}
+.field input[aria-invalid="true"]{border-color:#dc2626}
+.hp{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+#lead-form .btn{width:100%;margin-top:.4rem}
+.gdpr{font-size:.75rem;color:var(--soft);margin-top:.7rem}
+#lead-success{text-align:center;padding:1rem 0}
+#lead-success .h{font-size:1.6rem;font-weight:800;margin-bottom:.6rem}
+.escape{text-align:center;margin-top:1.2rem;font-size:.95rem}
+/* footer */
+footer{border-top:1px solid var(--border);padding:2.5rem 0 3rem;font-size:.92rem;color:var(--muted)}
+footer .cols{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:1.4rem}
+footer .legal{margin-top:1.4rem;font-size:.8rem;color:var(--soft)}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ebook.opusdock.com/">
+<meta property="og:site_name" content="eBook by OrderMage">
+<meta property="og:title" content="Rezervační systém pro restaurace | eBook by OrderMage">
+<meta property="og:description" content="Živá mapa stolů, online rezervace i rezervační kniha pro české restaurace. Funguje i bez internetu, bez instalace v prohlížeči. Vyzkoušejte 30 dní zdarma.">
+<meta property="og:image" content="https://ebook.opusdock.com/og/og-image.png">
+<meta property="og:image:secure_url" content="https://ebook.opusdock.com/og/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="eBook by OrderMage — živá mapa stolů restaurace na tabletu">
+<meta property="og:locale" content="cs_CZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rezervační systém pro restaurace | eBook by OrderMage">
+<meta name="twitter:description" content="Živá mapa stolů, online rezervace i rezervační kniha pro české restaurace. Funguje i bez internetu, bez instalace v prohlížeči. Vyzkoušejte 30 dní zdarma.">
+<meta name="twitter:image" content="https://ebook.opusdock.com/og/og-image.png">
+<meta name="twitter:image:alt" content="eBook by OrderMage — živá mapa stolů restaurace na tabletu">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://ebook.opusdock.com/#organization",
+  "name": "OrderMage",
+  "legalName": "Objednáme s.r.o.",
+  "url": "https://ordermage.com",
+  "email": "info@objedname.eu",
+  "description": "OrderMage (Objednáme s.r.o.) vyvíjí eBook — rezervační systém stolů pro české restaurace, bistra a kavárny.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "info@objedname.eu",
+    "availableLanguage": ["cs", "en"]
+  },
+  "areaServed": "CZ"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://ebook.opusdock.com/#software",
+  "name": "eBook",
+  "alternateName": "eBook by OrderMage",
+  "url": "https://ebook.opusdock.com/",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Rezervační systém pro restaurace",
+  "operatingSystem": "Web (prohlížeč na tabletu, mobilu i počítači)",
+  "inLanguage": "cs",
+  "description": "Rezervační systém stolů pro restaurace, bistra a kavárny. Živá mapa stolů, rezervační kniha s přehledem celého dne, online rezervace z webu restaurace, usazení hosta z ulice dvěma ťuknutími, automatické uvolnění stolu, když hosté nedorazí, práva pro celý tým a jeden tablet pro celou směnu. Funguje i bez internetu a všechna zařízení ukazují totéž do 2 sekund. Bez instalace, běží v prohlížeči.",
+  "featureList": [
+    "Živá mapa stolů (volný / blíží se rezervace / obsazený) se sekcemi",
+    "Rezervační kniha s vyhledáváním, přehledem celého dne a náhledem na libovolný čas",
+    "Online rezervace z webu restaurace rovnou do knihy",
+    "Automatické české e-maily hostům s tlačítky Potvrdit / Nevyhovuje",
+    "Protinávrhy termínů a chytré návrhy stolů i kombinací pro velké skupiny",
+    "Host z ulice dvěma ťuknutími, automatické uvolnění stolu, když hosté nedorazí",
+    "Role majitel / manažer / personál / jen čtení, jeden tablet pro celou směnu, každý číšník má svůj kód, historie akcí 30 dní",
+    "Funguje i bez internetu, všechna zařízení ukazují totéž do 2 sekund",
+    "Světlý i tmavý režim, bez instalace"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "name": "30denní demo zdarma",
+    "price": "0",
+    "priceCurrency": "CZK",
+    "url": "https://ebook.opusdock.com/#demo",
+    "description": "Vyzkoušejte eBook 30 dní zdarma v plné verzi.",
+    "availability": "https://schema.org/InStock",
+    "category": "free_trial"
+  },
+  "creator": { "@id": "https://ebook.opusdock.com/#organization" },
+  "provider": { "@id": "https://ebook.opusdock.com/#organization" },
+  "publisher": { "@id": "https://ebook.opusdock.com/#organization" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://ebook.opusdock.com/#faq",
+  "inLanguage": "cs",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Co je eBook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "eBook je rezervační systém stolů pro české restaurace, bistra a kavárny od firmy OrderMage (Objednáme s.r.o.). Nahrazuje papírovou rezervační knihu: živá mapa stolů ukazuje, který stůl je volný, obsazený, nebo se k němu blíží rezervace, a rezervační kniha drží přehled o všech rezervacích. Běží v prohlížeči na tabletu, mobilu i počítači, bez instalace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik stojí rezervační systém eBook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "eBook si můžete prvních 30 dní vyzkoušet zdarma, v plné verzi a bez platební karty. Ceník teprve ladíme s prvními podniky, cenu ostrého provozu vám proto řekneme na rovinu už během dema — žádný úvazek, kdykoliv můžete přestat. Napište na info@objedname.eu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funguje eBook bez internetu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Když internet vypadne, pracujete dál, jako by se nic nestalo — změny se uloží přímo v zařízení a srovnají se samy, jakmile jste zpátky online. Při běžném provozu ukazují všechna zařízení totéž do 2 sekund."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak funguje 30denní demo zdarma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vyplníte krátký formulář na ebook.opusdock.com a my vám připravíme vlastní prostředí s vaším placem a stoly. Demo běží 30 dní zdarma v plné verzi — mapa stolů, rezervační kniha, online rezervace i tým s právy. Nepotřebujete platební kartu ani instalaci."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Umí eBook online rezervace? Napojí se na náš web?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Hosté si stůl rezervují na stránce se jménem vaší restaurace na booking.opusdock.com. Pokud máte vlastní web, umí se eBook napojit i na něj (technicky přes veřejné API — nastavíme s vámi). Personál žádost potvrdí, nebo pošle protinávrh termínu; host dostane automatický český e-mail s tlačítky Potvrdit a Nevyhovuje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nahradí eBook papírovou rezervační knihu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano, to je jeho hlavní úloha. Rezervační kniha v eBooku umí vyhledávání, přehled celého dne a náhled na libovolný čas — i s odhadem, kdy se které stoly uvolní. Na rozdíl od papíru ji vidí celý tým naráz na všech zařízeních a u každé změny se dá 30 dní zpátky dohledat, kdo ji udělal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co se stane, když hosté nedorazí? A co host z ulice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Když rezervace nedorazí, stůl se po 30 minutách sám uvolní pro další hosty — nebo ho jedním tlačítkem podržíte dál. Hosta z ulice usadíte dvěma ťuknutími na stůl a systém ho po uplynutí doby zase sám uvolní. Pro velké skupiny systém rovnou navrhne volné stoly i jejich kombinace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Potřebuji něco instalovat? Na čem eBook běží?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nic se neinstaluje. eBook běží v prohlížeči na tabletu, mobilu i počítači, ve světlém i tmavém režimu. Celé směně stačí jeden tablet: každý číšník má svůj kód, kterým se u tabletu střídá, a při nečinnosti se obrazovka sama zamkne. Nový tablet připojíte jedním odkazem za minutu."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://ebook.opusdock.com/#website",
+  "url": "https://ebook.opusdock.com/",
+  "name": "eBook by OrderMage",
+  "alternateName": "Rezervační systém pro restaurace eBook",
+  "inLanguage": "cs",
+  "publisher": { "@id": "https://ebook.opusdock.com/#organization" }
+}
+</script>
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1120">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="topbar" id="sticky-header">
+  <div class="wrap">
+    <span class="brand">
+      <a class="logo" href="#hero"><b>eBook</b></a>
+      <a class="by" href="https://ordermage.com" rel="noopener">by OrderMage</a>
+    </span>
+    <nav aria-label="Obsah stránky">
+      <a href="#zivy-plac">Mapa stolů</a>
+      <a href="#rezervacni-kniha">Rezervační kniha</a>
+      <a href="#online-rezervace">Online rezervace</a>
+      <a href="#tym">Tým a práva</a>
+      <a href="#offline">Bez internetu</a>
+      <a href="#faq">Časté dotazy</a>
+      <a href="#demo" class="cta">Demo zdarma</a>
+    </nav>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="kicker">Plný podnik. Žádný chaos.</span>
+        <h1>Rezervační systém pro restaurace, který funguje i&nbsp;bez internetu</h1>
+        <p class="sub">Živá mapa stolů, rezervace z telefonu i webu na jednom místě — a když hosté nedorazí, stůl se sám uvolní. Bez instalace, běží v prohlížeči na tabletu, mobilu i počítači.</p>
+        <p class="definition">eBook je rezervační systém stolů pro české restaurace, bistra a kavárny od firmy <a href="https://ordermage.com" rel="noopener">OrderMage</a> (Objednáme s.r.o.). Živá mapa stolů ukazuje, který stůl je volný, obsazený, nebo se k němu blíží rezervace. Běží v prohlížeči na tabletu, mobilu i počítači, bez instalace — a funguje i bez internetu.</p>
+        <div class="cta-row">
+          <a class="btn" href="#demo">30denní demo zdarma</a>
+          <p class="micro">Bez karty, bez instalace. Ozveme se do 24 hodin.</p>
+        </div>
+        <a class="secondary" href="#ukazky">Podívat se, jak vypadá plac ↓</a>
+      </div>
+      <div>
+        <img class="shot" src="/landing/plac-light.png" alt="Živý plac v eBooku — barevná mapa stolů restaurace" width="1280" height="1025" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ukazky">
+  <div class="wrap">
+    <h2 class="visually-hidden">Ukázky z aplikace</h2>
+    <div class="strip">
+      <figure>
+        <div class="crop crop-plac">
+          <img src="/landing/plac-light.png" alt="Detail mapy stolů — barevné stavy stolů podle obsazenosti" width="1280" height="1025" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Barvy stolů se mění samy — volný, blíží se rezervace, obsazený.</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="/landing/kniha.png" alt="Rezervační kniha v eBooku — přehled dne s vyhledáváním" width="1280" height="1025" loading="lazy" decoding="async">
+        <figcaption>Celý den na jedné obrazovce: vidíte, jak bude plac vypadat v libovolný čas.</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="/landing/email.png" alt="Automatický český e-mail hostovi s tlačítky Potvrdit a Nevyhovuje" width="990" height="840" loading="lazy" decoding="async">
+        <figcaption>Hostům odchází potvrzení samo — český e-mail s tlačítky Potvrdit a Nevyhovuje.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="provoz" class="benefit">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Hosté, kteří nedorazí, hosté z ulice a chytré návrhy stolů</h2>
+        <p class="display">Rezervace nedorazila? Stůl nepropadne.</p>
+        <p>Po 30 minutách se stůl sám uvolní pro další hosty — nebo ho jedním klepnutím na „Držet dál“ podržíte. Hosté navíc potvrzují rezervace tlačítkem v českém e-mailu, takže víte dopředu, s kým můžete počítat.</p>
+        <p>Host z ulice? Dvě ťuknutí a stůl je obsazený. Po uplynutí doby se zase sám uvolní. A když dorazí velká skupina, systém rovnou navrhne volné stoly i jejich kombinace.</p>
+      </div>
+      <div class="media">
+        <img class="shot" src="/landing/noshow.png" alt="Upozornění, že rezervace nedorazila, s tlačítkem Držet dál" width="1260" height="118" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zivy-plac" class="benefit flip">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Živý plac: mapa stolů vaší restaurace</h2>
+        <p class="display">Vidíte celý plac na jednu obrazovku.</p>
+        <p>Barvy říkají, co se děje: volný, blíží se rezervace, obsazený. Zahrádka, salonek nebo bar — každá sekce zvlášť, každý stůl se svým popiskem.</p>
+        <p>Přehled obsazenosti stolů máte i jako seznam, který řadí problémy nahoru sám — co hoří, vidíte první. Žádné školení: hosta usadíte dvěma ťuknutími v prohlížeči, který personál už zná.</p>
+      </div>
+      <div class="media">
+        <img class="shot" src="/landing/plac-light.png" alt="Živý plac se sekcemi Hlavní plac, Salonek a Zahrádka" width="1280" height="1025" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rezervacni-kniha" class="benefit">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Rezervační kniha s přehledem celého dne</h2>
+        <p class="display">Každá rezervace na jednom místě — z telefonu i z webu.</p>
+        <p>Papírová kniha neumí hledat. A neukáže vám, jak bude plac vypadat příští pátek v 19:30. Tady kohokoliv najdete za pár vteřin, celý den vidíte na jedné obrazovce a na libovolný čas se podíváte dopředu — i s odhadem, kdy se které stoly uvolní.</p>
+        <p>Rezervace přijatá po telefonu v největším fofru se už nikam neztratí.</p>
+      </div>
+      <div class="media">
+        <img class="shot" src="/landing/kniha.png" alt="Rezervační kniha — vyhledávání a přehled celého dne" width="1280" height="1025" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tym" class="benefit">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Tým, práva a jeden tablet pro celou směnu</h2>
+        <p class="display">Jeden tablet, celý tým, žádné dohady.</p>
+        <p>Každý číšník má svůj kód, kterým se u tabletu střídá, a obrazovka se při nečinnosti sama zamkne. U každé akce vidíte 30 dní zpátky, kdo ji udělal a kde — víc odpovědnosti, než kdy měl papír.</p>
+        <p>Každý má jen ta práva, která potřebuje — od majitele po brigádníka. Nový tablet připojíte jedním odkazem za minutu.</p>
+      </div>
+      <div class="media" aria-hidden="true">
+        <div class="crop crop-plac" style="aspect-ratio:16/7">
+          <img src="/landing/plac-dark.png" alt="" width="1280" height="1025" loading="lazy" decoding="async" style="width:135%;transform:translate(-13%,-1%)">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="online-rezervace" class="benefit flip">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Online rezervace stolů: z webu rovnou do knihy</h2>
+        <p class="display">Hosté rezervují pod vaším jménem, česky a bez telefonátu.</p>
+        <p>Vlastní rezervační stránka na booking.opusdock.com nese jméno vaší restaurace — hosty neposíláte na cizí portál. Žádost z vašeho webu spadne rovnou do knihy; když termín nevyhovuje, pošlete jedním klepnutím protinávrh.</p>
+        <p>Potvrzení odchází hostům samo: český e-mail s tlačítky Potvrdit a Nevyhovuje.</p>
+      </div>
+      <div class="media">
+        <div class="crop crop-email">
+          <img src="/landing/email.png" alt="Detail e-mailu s návrhem termínu a tlačítky Potvrdit nový termín a Nevyhovuje mi" width="990" height="840" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jak-zacit">
+  <div class="wrap">
+    <h2>Jak začnete</h2>
+    <ol class="steps">
+      <li>Vyplníte formulář (30 vteřin).</li>
+      <li>Do 24 hodin se vám ozveme a připravíme vám podnik.</li>
+      <li>30 dní zkoušíte naostro — s vaším placem a vašimi stoly.</li>
+    </ol>
+    <p style="color:var(--muted)">Žádná instalace, žádné školení na půl dne. Otevřete prohlížeč a jedete.</p>
+  </div>
+</section>
+
+<section id="offline">
+  <div class="wrap">
+    <span class="kicker">Poctivě</span>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.8rem);color:var(--text);margin-bottom:1rem">Funguje i bez internetu. A všechna zařízení ukazují totéž</h2>
+    <p class="lead-claim">Vypněte si Wi-Fi a klidně pracujte dál — změny se srovnají, jakmile jste zpátky online.</p>
+    <p style="color:var(--muted);max-width:46rem">Rezervační kniha musí fungovat i ve chvíli, kdy uprostřed večera vypadne internet. eBook si proto všechno podstatné drží přímo v zařízení: obrazovka reaguje okamžitě vždycky a při běžném provozu ukazují všechna zařízení totéž do 2 sekund. Světlý i tmavý režim — podle toho, jak to máte na place.</p>
+    <h3>Kdo za tím je</h3>
+    <p style="color:var(--muted);max-width:46rem">eBook staví <a href="https://ordermage.com" rel="noopener">OrderMage</a> (Objednáme s.r.o.). Píšete si přímo s lidmi, kteří systém vyvíjejí — <a href="mailto:info@objedname.eu">info@objedname.eu</a>.</p>
+    <h3>Kolik to stojí?</h3>
+    <p style="color:var(--muted);max-width:46rem">Prvních 30 dní nic. Ceník teprve ladíme s prvními podniky, takže cenu vám řekneme na rovinu ještě během dema — žádný úvazek, žádná platební karta, kdykoliv můžete přestat.</p>
+    <div class="pair">
+      <img class="shot" src="/landing/plac-light.png" alt="eBook ve světlém režimu" width="1280" height="1025" loading="lazy" decoding="async">
+      <img class="shot" src="/landing/plac-dark.png" alt="eBook v tmavém režimu" width="1280" height="1025" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.4rem,3vw,1.8rem);color:var(--text);margin-bottom:1.2rem">Časté dotazy</h2>
+
+    <details id="faq-co-je">
+      <summary><h3>Co je eBook?</h3></summary>
+      <p>eBook je rezervační systém stolů pro české restaurace, bistra a kavárny od firmy OrderMage (Objednáme s.r.o.). Nahrazuje papírovou rezervační knihu: živá mapa stolů ukazuje, který stůl je volný, obsazený, nebo se k němu blíží rezervace, a rezervační kniha drží přehled o všech rezervacích. Běží v prohlížeči na tabletu, mobilu i počítači, bez instalace.</p>
+    </details>
+
+    <details id="faq-cena">
+      <summary><h3>Kolik stojí rezervační systém eBook?</h3></summary>
+      <p>eBook si můžete prvních 30 dní vyzkoušet zdarma, v plné verzi a bez platební karty. Ceník teprve ladíme s prvními podniky, cenu ostrého provozu vám proto řekneme na rovinu už během dema — žádný úvazek, kdykoliv můžete přestat. Napište na info@objedname.eu.</p>
+    </details>
+
+    <details id="faq-offline">
+      <summary><h3>Funguje eBook bez internetu?</h3></summary>
+      <p>Ano. Když internet vypadne, pracujete dál, jako by se nic nestalo — změny se uloží přímo v zařízení a srovnají se samy, jakmile jste zpátky online. Při běžném provozu ukazují všechna zařízení totéž do 2 sekund.</p>
+    </details>
+
+    <details id="faq-demo">
+      <summary><h3>Jak funguje 30denní demo zdarma?</h3></summary>
+      <p>Vyplníte krátký formulář na ebook.opusdock.com a my vám připravíme vlastní prostředí s vaším placem a stoly. Demo běží 30 dní zdarma v plné verzi — mapa stolů, rezervační kniha, online rezervace i tým s právy. Nepotřebujete platební kartu ani instalaci.</p>
+    </details>
+
+    <details id="faq-web">
+      <summary><h3>Umí eBook online rezervace? Napojí se na náš web?</h3></summary>
+      <p>Ano. Hosté si stůl rezervují na stránce se jménem vaší restaurace na booking.opusdock.com. Pokud máte vlastní web, umí se eBook napojit i na něj (technicky přes veřejné API — nastavíme s vámi). Personál žádost potvrdí, nebo pošle protinávrh termínu; host dostane automatický český e-mail s tlačítky Potvrdit a Nevyhovuje.</p>
+    </details>
+
+    <details id="faq-kniha">
+      <summary><h3>Nahradí eBook papírovou rezervační knihu?</h3></summary>
+      <p>Ano, to je jeho hlavní úloha. Rezervační kniha v eBooku umí vyhledávání, přehled celého dne a náhled na libovolný čas — i s odhadem, kdy se které stoly uvolní. Na rozdíl od papíru ji vidí celý tým naráz na všech zařízeních a u každé změny se dá 30 dní zpátky dohledat, kdo ji udělal.</p>
+    </details>
+
+    <details id="faq-nedorazi">
+      <summary><h3>Co se stane, když hosté nedorazí? A co host z ulice?</h3></summary>
+      <p>Když rezervace nedorazí, stůl se po 30 minutách sám uvolní pro další hosty — nebo ho jedním tlačítkem podržíte dál. Hosta z ulice usadíte dvěma ťuknutími na stůl a systém ho po uplynutí doby zase sám uvolní. Pro velké skupiny systém rovnou navrhne volné stoly i jejich kombinace.</p>
+    </details>
+
+    <details id="faq-zarizeni">
+      <summary><h3>Potřebuji něco instalovat? Na čem eBook běží?</h3></summary>
+      <p>Nic se neinstaluje. eBook běží v prohlížeči na tabletu, mobilu i počítači, ve světlém i tmavém režimu. Celé směně stačí jeden tablet: každý číšník má svůj kód, kterým se u tabletu střídá, a při nečinnosti se obrazovka sama zamkne. Nový tablet připojíte jedním odkazem za minutu.</p>
+    </details>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Vyzkoušejte 30denní demo zdarma</h2>
+      <p class="intro">Vyplníte formulář, do 24 hodin se ozveme a připravíme vám podnik — váš plac, vaše stoly.</p>
+
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label for="lead-venue">Název podniku</label>
+          <input id="lead-venue" name="venue_name" type="text" placeholder="Restaurace U Lípy" autocomplete="organization" required>
+          <p class="error" id="lead-venue-error" hidden>Vyplňte prosím název podniku.</p>
+        </div>
+        <div class="field">
+          <label for="lead-name">Vaše jméno</label>
+          <input id="lead-name" name="name" type="text" placeholder="Jana Nováková" autocomplete="name" required>
+          <p class="error" id="lead-name-error" hidden>Vyplňte prosím své jméno.</p>
+        </div>
+        <div class="field">
+          <label for="lead-email">E-mail</label>
+          <input id="lead-email" name="email" type="email" placeholder="jana@vaserestaurace.cz" autocomplete="email" required>
+          <p class="helper">Sem vám pošleme přístup k demu.</p>
+          <p class="error" id="lead-email-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="lead-phone">Telefon</label>
+          <input id="lead-phone" name="phone" type="tel" placeholder="+420" autocomplete="tel">
+          <p class="helper">Nepovinné — zavoláme, jen pokud si to budete přát.</p>
+          <p class="error" id="lead-phone-error" hidden>Telefon nevypadá správně. Zkontrolujte ho, nebo nechte pole prázdné.</p>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="lead-website">Web</label>
+          <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div id="lead-turnstile"></div>
+        <button class="btn" id="lead-submit" type="submit">Chci 30denní demo zdarma</button>
+        <p class="micro" style="text-align:center">Ozveme se do 24 hodin. Žádné platební údaje, žádný spam.</p>
+        <p class="gdpr">Odesláním formuláře souhlasíte, že Objednáme s.r.o. použije vaše údaje výhradně k domluvení a spuštění dema. K ničemu jinému je nepoužijeme.</p>
+        <p id="lead-form-error" hidden>Odeslání se nepovedlo. Zkuste to prosím ještě jednou — nebo nám napište rovnou na <a href="mailto:info@objedname.eu">info@objedname.eu</a>.</p>
+      </form>
+
+      <div id="lead-success" hidden>
+        <p class="h">Díky!</p>
+        <p style="color:var(--muted)">Do 24 hodin se vám ozveme z adresy info@objedname.eu a domluvíme spuštění vašeho 30denního dema. Kdyby e-mail nedorazil, mrkněte do spamu — nebo nám napište rovnou.</p>
+      </div>
+
+      <p class="escape">Radši rovnou e-mail? <a href="mailto:info@objedname.eu">info@objedname.eu</a></p>
+    </div>
+  </div>
+</section>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <h2 class="visually-hidden">Kontakt</h2>
+    <div class="cols">
+      <div>
+        <p style="font-weight:700;color:var(--text)">eBook vyvíjí <a href="https://ordermage.com" rel="noopener">OrderMage</a> (Objednáme s.r.o.)</p>
+        <p><a href="mailto:info@objedname.eu">info@objedname.eu</a></p>
+      </div>
+      <ul>
+        <li><a href="https://booking.opusdock.com/" rel="nofollow">Stav rezervace</a></li>
+        <li><a href="#demo">Demo zdarma</a></li>
+      </ul>
+    </div>
+    <p style="margin-top:1.2rem">Radši rovnou e-mail? <a href="mailto:info@objedname.eu">info@objedname.eu</a></p>
+    <p class="legal">© 2026 Objednáme s.r.o.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── sticky header: slides in after scrolling past the hero ────────────────
+  var topbar = document.getElementById('sticky-header');
+  var hero = document.getElementById('hero');
+  if (topbar && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      topbar.classList.toggle('shown', !entries[0].isIntersecting);
+    }, { rootMargin: '-60px 0px 0px 0px' }).observe(hero);
+  }
+
+  // ── lead form ─────────────────────────────────────────────────────────────
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+  var startedAt = Date.now();
+  var successBox = document.getElementById('lead-success');
+  var formError = document.getElementById('lead-form-error');
+  var submitBtn = document.getElementById('lead-submit');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var PHONE_RE = /^\+?[0-9](?:[0-9 ()\/.-]{4,18})$/;
+
+  function setError(field, id, show, text) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (text !== undefined) el.textContent = text;
+    el.hidden = !show;
+    field.setAttribute('aria-invalid', show ? 'true' : 'false');
+  }
+
+  // Turnstile is optional: loaded lazily on first interaction, only when the
+  // worker advertises a site key. The form works without it (honeypot only).
+  var configRequested = false;
+  var widgetId = null;
+  function initTurnstile() {
+    if (configRequested) return;
+    configRequested = true;
+    fetch('/api/v1/leads/config')
+      .then(function (r) { return r.json(); })
+      .then(function (c) {
+        var key = c && c.ok && c.data ? c.data.turnstile_site_key : null;
+        if (!key) return;
+        window._opusdockTsReady = function () {
+          var el = document.getElementById('lead-turnstile');
+          if (el && window.turnstile) widgetId = window.turnstile.render(el, { sitekey: key });
+        };
+        var s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=_opusdockTsReady';
+        s.async = true;
+        document.head.appendChild(s);
+      })
+      .catch(function () { /* no Turnstile — honeypot still applies */ });
+  }
+  form.addEventListener('focusin', initTurnstile, { once: true });
+  form.addEventListener('pointerdown', initTurnstile, { once: true });
+
+  var venueInput = document.getElementById('lead-venue');
+  var nameInput = document.getElementById('lead-name');
+  var emailInput = document.getElementById('lead-email');
+  var phoneInput = document.getElementById('lead-phone');
+  var websiteInput = document.getElementById('lead-website');
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    formError.hidden = true;
+
+    var venue = venueInput.value.trim();
+    var name = nameInput.value.trim();
+    var email = emailInput.value.trim();
+    var phone = phoneInput.value.trim();
+    var valid = true;
+
+    setError(venueInput, 'lead-venue-error', venue === '');
+    if (venue === '') valid = false;
+    setError(nameInput, 'lead-name-error', name === '');
+    if (name === '') valid = false;
+    if (email === '') {
+      setError(emailInput, 'lead-email-error', true, 'Bez e-mailu se vám neozveme — vyplňte ho prosím.');
+      valid = false;
+    } else if (!EMAIL_RE.test(email)) {
+      setError(emailInput, 'lead-email-error', true, 'Tenhle e-mail nevypadá správně. Zkontrolujte ho prosím.');
+      valid = false;
+    } else {
+      setError(emailInput, 'lead-email-error', false);
+    }
+    if (phone !== '' && !PHONE_RE.test(phone)) {
+      setError(phoneInput, 'lead-phone-error', true);
+      valid = false;
+    } else {
+      setError(phoneInput, 'lead-phone-error', false);
+    }
+    if (!valid) return;
+
+    var payload = {
+      name: name,
+      venue_name: venue,
+      email: email,
+      phone: phone === '' ? null : phone,
+      message: null,
+      website: websiteInput.value,
+      started_at: startedAt
+    };
+    submitBtn.disabled = true;
+    var submitLabel = submitBtn.textContent;
+
+    // The bot check runs in the background and may still be finishing when a
+    // fast typist hits send — wait for its token (max ~10 s) instead of
+    // letting the server reject the submission.
+    function awaitToken(deadline) {
+      if (widgetId === null || !window.turnstile) return Promise.resolve(null);
+      var token = window.turnstile.getResponse(widgetId);
+      if (token) return Promise.resolve(token);
+      if (Date.now() > deadline) return Promise.resolve(null);
+      submitBtn.textContent = 'Ověřujeme…';
+      return new Promise(function (resolve) {
+        setTimeout(function () { resolve(awaitToken(deadline)); }, 250);
+      });
+    }
+
+    initTurnstile();
+    awaitToken(Date.now() + 10000)
+      .then(function (token) {
+        if (token) payload.turnstile_token = token;
+        submitBtn.textContent = submitLabel;
+        return fetch('/api/v1/leads', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      })
+      .then(function (r) {
+        return r.json().then(function (b) { return { ok: r.ok && b && b.ok === true }; });
+      })
+      .then(function (res) {
+        if (!res.ok) throw new Error('submit failed');
+        form.hidden = true;
+        successBox.hidden = false;
+      })
+      .catch(function () {
+        formError.hidden = false;
+        if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId);
+      })
+      .then(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitLabel;
+      });
+  });
+})();
+</script>
+</body>
+</html>

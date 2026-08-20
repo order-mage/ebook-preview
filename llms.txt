@@ -1,0 +1,24 @@
+# OpusDock eBook
+
+> Rezervační systém stolů pro české restaurace, bistra a kavárny. Živá mapa stolů v reálném čase, rezervační kniha s timeline, online žádosti o rezervaci přes veřejné API (weby i AI agenti), automatické české e-maily hostům, walk-in dvojtapem, auto-no-show, role a práva týmu. Offline-first — funguje i bez internetu, synchronizace mezi zařízeními do 2 sekund. Bez instalace, běží v prohlížeči. 30denní demo zdarma. Vyvíjí OrderMage (Objednáme s.r.o.), kontakt: info@objedname.eu.
+
+Klíčová fakta:
+
+- Produkt: OpusDock eBook — rezervační systém pro restaurace (rezervace stolů online, náhrada papírové rezervační knihy)
+- Živý plac: barevná mapa stolů (volný / blíží se rezervace / obsazený), sekce jako zahrádka nebo salonek, mřížka i seznam s prioritním řazením problémů
+- Rezervační kniha: vyhledávání, timeline, náhled na libovolný čas se simulací uvolnění stolů
+- Online rezervace: veřejné API pro weby i AI agenty, protinávrhy termínů, automatické české e-maily s tlačítky Potvrdit / Nevyhovuje, stránky pro hosty na booking.opusdock.com
+- Provoz: walk-in dvojtapem, automatické uvolnění stolu, auto-no-show s volbou „Držet dál“, chytré návrhy stolů i kombinací pro velké skupiny
+- Tým: role majitel / manažer / personál / jen čtení, sdílené tablety přes párovací odkaz, střídání personálu 4místným PINem, auto-zámek, historie akcí 30 dní
+- Technologie: offline-first (UI reaguje okamžitě i při výpadku internetu), realtime synchronizace do 2 s, světlý i tmavý režim, bez instalace — prohlížeč na tabletu, mobilu i počítači
+- Cena: 30denní demo zdarma; cena ostrého provozu individuálně — info@objedname.eu
+- Cílová skupina: české restaurace, bistra a kavárny; rozhoduje majitel nebo provozní
+- Provozovatel: OrderMage / Objednáme s.r.o.
+
+## Stránky
+
+- [Rezervační systém pro restaurace OpusDock eBook](https://ebook.opusdock.com/): hlavní stránka produktu s funkcemi, FAQ a formulářem pro 30denní demo zdarma
+
+## English summary
+
+OpusDock eBook is a table-reservation system for Czech restaurants, bistros, and cafés, built by OrderMage (Objednáme s.r.o.). Core features: a live floor map showing table status in real time (free / reservation approaching / occupied) with sections, a reservation book with search, timeline, and any-time preview with release simulation, online reservation requests via a public API (restaurant websites and AI agents), counter-proposal scheduling, automatic Czech guest e-mails with Confirm / Decline buttons, guest pages on booking.opusdock.com, double-tap walk-ins, automatic table release, auto-no-show handling with a "keep holding" option, smart table and combination suggestions for large groups, and team roles (owner / manager / staff / read-only) with shared tablets, 4-digit PIN switching, auto-lock, and a 30-day action history. The app is offline-first — the UI responds instantly even without internet and syncs across all devices within 2 seconds when online. No installation; it runs in a browser on tablets, phones, and computers, in light and dark mode. Offer: free 30-day full-featured demo. Contact: info@objedname.eu. Guest booking pages (booking.opusdock.com) are private per restaurant and excluded from indexing.
